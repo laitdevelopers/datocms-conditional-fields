@@ -1,0 +1,51 @@
+trigger:
+  branches:
+    include:
+      - develop
+      - master
+  paths:
+    include:
+      - "resources/*.bicep"
+
+pr: none
+
+pool:
+  vmImage: "ubuntu-latest"
+
+## Uncomment and adapt to project requirements:
+# variables:
+#   - ${{ if eq(variables['build.sourceBranch'], 'refs/heads/master') }}:
+#       - group: shared-prod
+#   - ${{ else }}:
+#       - group: shared-dev
+
+# stages:
+#   - stage: "development"
+#     displayName: "Deploy development resources"
+#     jobs:
+#       - deployment: "deploy"
+#         displayName: "Deploy Azure Resources"
+#         ${{ if eq(variables['build.sourceBranch'], 'refs/heads/master') }}:
+#           environment: "production"
+#         ${{ else }}:
+#           environment: "development"
+#         strategy:
+#           runOnce:
+#             deploy:
+#               steps:
+#               - checkout: self
+#               - task: AzureResourceManagerTemplateDeployment@3
+#                 displayName: "Deploy resources"
+#                 inputs:
+#                   deploymentScope: "Subscription"
+#                   deploymentMode: "Incremental"
+#                   azureResourceManagerConnection: "$(azureResourceManagerConnection)"
+#                   subscriptionId: "$(azureSubscriptionId)"
+#                   templateLocation: "Linked artifact"
+#                   location: "$(location)"
+#                   csmFile: "./resources/resources.bicep"
+#                   deploymentOutputs: "deploymentOutputs"
+#                   useWithoutJSON: true
+#                   overrideParameters: '
+#                     -key "$(value)"
+#                     '

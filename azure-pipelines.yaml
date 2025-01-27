@@ -1,0 +1,30 @@
+trigger:
+  branches:
+    include:
+      - develop
+      - master
+  tags:
+    include:
+      - test
+  paths:
+    include:
+      - "src"
+      - azure-pipelines.yaml
+
+# Uncomment this, to trigger when Azure Resources have been deployed:
+# resources:
+#   pipelines:
+#     - pipeline: "Resources"
+#       source: "Resources" # Name of the pipeline in Azure DevOps.
+#       trigger: true
+
+pr: none
+
+pool:
+  vmImage: "windows-latest" # May be "ubuntu-latest" if build on linux. Useful for SWA!
+
+variables:
+  - name: "folder"
+    value: "src"
+  - name: NUGET_PACKAGES # Used for NuGet Cache.
+    value: $(Pipeline.Workspace)/.nuget/packages
