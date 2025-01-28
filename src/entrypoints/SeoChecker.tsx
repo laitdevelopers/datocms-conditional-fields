@@ -28,7 +28,7 @@ export function SeoChecker({ ctx, seoFeld }: PropTypes) {
                 }>
                 </span>
             </span>
-            {titleScore.score < 100 ? (<p className='text-for-bar'>The title is empty or the title is not between 20 and 70 charactors</p>) : (<p>Great! Score!</p>)}
+            {titleScore.score < 100 ? (<p className='text-for-bar'>The title is empty or the title is not between 20 and 60 charactors</p>) : (<p>Great! Score!</p>)}
       </div>
       <div className="seo-checker-item">
             <h3>Description</h3>
@@ -64,7 +64,7 @@ function checkTitle(title: string | null): SEOHealthCheck {
     }
 
     const length = title.length;
-    if (length >= 20 && length <= 70) {
+    if (length >= 20 && length <= 60) {
         return { score: 100, status: 'green' };
     } else {
         return { score: 70, status: 'yellow' };

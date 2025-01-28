@@ -1,3 +1,4 @@
-# Conditional DatoCMS fields
+# LAIT Extenstion pack
 
-adds the option to set a sentense or a field hidden based on a condition
+##Seo checker
+Checks the healthstatus for your seo settings input
