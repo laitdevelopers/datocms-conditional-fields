@@ -1,0 +1,46 @@
+.seo-checker-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+}
+
+.seo-checker-item p {
+    margin: 0;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.seo-checker-item h3 {
+    margin: 0;
+}
+
+.seo-checker-bar {
+    border-radius: 4px;
+    position: relative;
+    width: 100%;
+    height: 8px;
+    overflow: hidden;
+    margin-top: 4px;
+    background: #E5E5E5;
+}
+
+
+
+.seo-checker-bar-child {
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.seo-checker-bar-child--red {
+    background: #F18383;
+}
+
+.seo-checker-bar-child--yellow {
+    background: #FEF8A6;
+}
+
+.seo-checker-bar-child--green {
+    background: #79AE6D;
+}

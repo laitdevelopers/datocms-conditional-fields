@@ -1,56 +1,50 @@
-import { connect, Field, RenderFieldExtensionCtx, ItemFormSidebarPanelsCtx } from "datocms-plugin-sdk";
+import { connect, ItemFormSidebarPanelsCtx, RenderItemFormSidebarPanelCtx, ItemType } from "datocms-plugin-sdk";
 import "datocms-react-ui/styles.css";
 import ConfigScreen from "./entrypoints/ConfigScreen";
-
 import { render } from "./utils/render";
-import { LoremIpsumGenerator } from "./entrypoints/loremIpsumGenerator";
-import { Canvas } from "datocms-react-ui";
+import { SeoChecker } from "./entrypoints/SeoChecker";
+import { SeoFieldProperties } from "./interfaces/Seo";
+
+
+
 
 connect({
 	renderConfigScreen(ctx) {
-		return render(<div><p>test</p>  <ConfigScreen ctx={ctx} /></div>);
-	},
-	overrideFieldExtensions(field: Field, ctx: FieldIntentCtx) {
-		return {
-			addons: [
-				{ id: 'loremIpsumGenerator' },
-			],
-		};
+		return render(<ConfigScreen ctx={ctx} />);
 	},
 	itemFormSidebarPanels(model: ItemType, ctx: ItemFormSidebarPanelsCtx) {
-		return [
-			{
-				id: 'badSeoRanking',
-				label: 'Your website has bad seo setup',
-				startOpen: true,
-				placement: ["before", "info"],
-				rank: 1000,
-			},
-		];
-	},
-	renderFieldExtension(fieldExtensionId: string, ctx: RenderFieldExtensionCtx) {
-		if (ctx.field.attributes.api_key === "seo" && ctx.formValues.seo[ctx.locale].title === "") {
-			// alert("IS NULL");
+		const { seoChecker } = ctx.plugin.attributes.parameters;
+		if (!seoChecker) {
+			return [];
 		}
-		switch (fieldExtensionId) {
-			case 'loremIpsumGenerator':
-				return render(<LoremIpsumGenerator ctx={ctx} />);
-		}
+		return [{
+			id: 'badSeoRanking',
+			label: 'LAIT Seo Ranking',
+			startOpen: true,
+			placement: ["before", "info"],
+			rank: 1,
+		}]
 	},
-	renderItemFormSidebarPanel(
+	async renderItemFormSidebarPanel(
 		sidebarPanelId: string,
-		ctx: any,
+		ctx: RenderItemFormSidebarPanelCtx,
 	) {
-		if (ctx.formValues.seo[ctx.locale].title === "") {
-			return render(<Canvas ctx={ctx}>
-				<h1>YOUR WEBSITE SEO CAN PERFORM BADLY</h1>
-			</Canvas>)
-		} else {
-			return null
+		let apiKey: string  | null = null;
+		let seoField: SeoFieldProperties | null = null;
+		await (await ctx.loadItemTypeFields(ctx.itemType.id)).forEach((field) => {
+			if(field.attributes.field_type === "seo") {
+				apiKey = field.attributes.api_key;
+			}
+		});
+		if(apiKey && ctx.formValues[apiKey]) {
+			seoField = (ctx.formValues[apiKey] as any)[ctx.locale] as SeoFieldProperties;
+			
 		}
 
-
-
+		if (sidebarPanelId === 'badSeoRanking' ) {
+			return render(<SeoChecker ctx={ctx} seoFeld={seoField} />);
+		} 
 	},
 
 });
+

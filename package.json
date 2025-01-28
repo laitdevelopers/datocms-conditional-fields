@@ -1,6 +1,6 @@
 {
-  "name": "datocms-plugin-conditional-dato-cms-fields",
-  "description": "adds the option to set a sentense or a field hidden based on a condition",
+  "name": "datocms-lait-extension-pack",
+  "description": "Modules to extend DatoCMS",
   "homepage": "https://github.com/laitdevelopers/datocms-conditional-fields",
   "private": false,
   "version": "0.1.0",
