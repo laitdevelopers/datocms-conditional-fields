@@ -14,6 +14,8 @@ connect({
 	},
 	itemFormSidebarPanels(_model: ItemType, ctx: ItemFormSidebarPanelsCtx) {
 		const { seoChecker } = ctx.plugin.attributes.parameters;
+		
+		
 		if (!seoChecker) {
 			return [];
 		}
@@ -38,12 +40,13 @@ connect({
 		});
 		if(apiKey && ctx.formValues[apiKey]) {
 			seoField = (ctx.formValues[apiKey] as any)[ctx.locale] as SeoFieldProperties;
-			
 		}
 
-		if (sidebarPanelId === 'badSeoRanking' ) {
+		if (sidebarPanelId === 'badSeoRanking' && seoField) {
 			return render(<SeoChecker ctx={ctx} seoFeld={seoField} />);
-		} 
+		} else if(sidebarPanelId === 'badSeoRanking' && !seoField) {
+			return render(<p>No Seo field found</p>);
+		}
 	},
 
 });

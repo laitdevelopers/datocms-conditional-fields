@@ -54,6 +54,8 @@ export function SeoChecker({ ctx, seoFeld }: PropTypes) {
             </span>
             {imageScore.score < 100 ? (<p className='text-for-bar'>The image is missing</p>) : (<p>Great! Score!</p>)}
       </div>
+
+      <p className='note-text'>Note that the checker only checks DatoCMS input, your website could contain better fallback options</p>
     </Canvas>
   );
 }
