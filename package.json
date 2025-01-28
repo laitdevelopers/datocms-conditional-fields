@@ -7,10 +7,13 @@
   "author": "Anders Bootsmann Overvad <ab@lait.dk>",
   "type": "module",
   "keywords": [
-    "datocms-plugin"
+    "datocms-plugin",
+    "lait",
+    "lait-extentions",
+    "lait-datocms"
   ],
   "datoCmsPlugin": {
-    "title": "Conditional DatoCMS fields",
+    "title": "LAIT extention pack for DatoCMS",
     "coverImage": "docs/cover-1200x800.png",
     "previewImage": "docs/preview.mp4",
     "entryPoint": "dist/index.html",

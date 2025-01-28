@@ -12,7 +12,7 @@ connect({
 	renderConfigScreen(ctx) {
 		return render(<ConfigScreen ctx={ctx} />);
 	},
-	itemFormSidebarPanels(model: ItemType, ctx: ItemFormSidebarPanelsCtx) {
+	itemFormSidebarPanels(_model: ItemType, ctx: ItemFormSidebarPanelsCtx) {
 		const { seoChecker } = ctx.plugin.attributes.parameters;
 		if (!seoChecker) {
 			return [];
