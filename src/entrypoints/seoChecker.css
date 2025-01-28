@@ -44,3 +44,10 @@
 .seo-checker-bar-child--green {
     background: #79AE6D;
 }
+
+.note-text {
+    font-size: 10px;
+    font-style: italic;
+    color: #666;
+    margin-top: 5px;
+}

@@ -3,7 +3,7 @@
   "description": "Modules to extend DatoCMS",
   "homepage": "https://github.com/laitdevelopers/datocms-conditional-fields",
   "private": false,
-  "version": "0.2.1",
+  "version": "0.2.2",
   "author": "Anders Bootsmann Overvad <ab@lait.dk>",
   "type": "module",
   "keywords": [
