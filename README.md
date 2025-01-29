@@ -1,4 +1,4 @@
 # LAIT Extenstion pack
 
-##Seo checker
+## Seo checker
 Checks the healthstatus for your seo settings input
